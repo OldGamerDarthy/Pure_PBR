@@ -1,5 +1,6 @@
 /*
 Get some hot motion blur along with some dank tonemapping
+https://github.com/iryoku/smaa
 */
 
 #version 450 compatibility
