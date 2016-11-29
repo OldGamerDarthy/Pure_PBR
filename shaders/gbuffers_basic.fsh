@@ -6,8 +6,10 @@
 
 /* DRAWBUFFERS:0 */
 
+layout (location = 0) out vec3 albedo;
+
 in vec3 color;
 
 void main() {
-    gl_FragData[0] = vec4(color.rgb, 1.0);
+    albedo = color.rgb;
 }
