@@ -1,4 +1,4 @@
-#version 450 core
+#version 450 compatibility
 #define final
 #define fsh
 #define ShaderStage 7
