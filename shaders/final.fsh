@@ -8,6 +8,8 @@ uniform sampler2D colortex0;
 
 in vec2 texcoord;
 
+out vec3 finalColor;
+
 void main() {
-    gl_FragColor = texture(colortex0, texcoord);
+    finalColor = texture(colortex0, texcoord).rgb;
 }
