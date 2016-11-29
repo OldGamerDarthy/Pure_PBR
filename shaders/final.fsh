@@ -1,3 +1,7 @@
+/*
+Get some hot motion blur along with some dank tonemapping
+*/
+
 #version 450 compatibility
 #define final
 #define fsh

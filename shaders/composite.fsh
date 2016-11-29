@@ -8,6 +8,11 @@
 const int colortex0Format = RGBA16F;
 */
 
+/*
+// TODO: GI(RSM-flux) https://pdfs.semanticscholar.org/1b29/71e7024a3e1c4108718e59b5ba4327c44b93.pdf, 
+         AO(GTAO) http://iryoku.com/downloads/Practical-Realtime-Strategies-for-Accurate-Indirect-Occlusion.pdf
+*/
+
 uniform sampler2D colortex0;
 
 in vec2 texcoord;
