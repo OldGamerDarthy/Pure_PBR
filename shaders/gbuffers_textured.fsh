@@ -8,8 +8,11 @@
 
 layout (location = 0) out vec3 albedo;
 
+uniform sampler2D texture;
+
+in vec2 texcoord;
 in vec3 color;
 
 void main() {
-    albedo = color.rgb;
+    albedo = texture2D3(texture, texcoord) * color.rgb;
 }
