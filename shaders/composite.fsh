@@ -13,6 +13,8 @@ const int colortex0Format = RGBA16F;
          AO(GTAO) http://iryoku.com/downloads/Practical-Realtime-Strategies-for-Accurate-Indirect-Occlusion.pdf
 */
 
+//allahuakbar
+
 uniform sampler2D colortex0;
 
 in vec2 texcoord;
