@@ -5,10 +5,6 @@
 #include "/lib/Syntax.glsl"
 
 /*
-const int colortex0Format = RGBA32F;
-*/
-
-/*
 // TODO: GI(RSM-flux) https://pdfs.semanticscholar.org/1b29/71e7024a3e1c4108718e59b5ba4327c44b93.pdf, 
          AO(GTAO) http://iryoku.com/downloads/Practical-Realtime-Strategies-for-Accurate-Indirect-Occlusion.pdf
 */

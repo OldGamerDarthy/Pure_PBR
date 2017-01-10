@@ -3,6 +3,7 @@
 #define fsh
 #define ShaderStage 1
 #include "/lib/Syntax.glsl"
+#include "/lib/Settings.glsl"
 
 /* TODO, shading, 
          diffuse(burley fitted - http://www.frostbite.com/wp-content/uploads/2014/11/course_notes_moving_frostbite_to_pbr.pdf - page 11
