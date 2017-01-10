@@ -1,7 +1,7 @@
 #version 450 compatibility
-#define composite1
+#define composite3
 #define vsh
-#define ShaderStage 1
+#define ShaderStage 3
 #include "/lib/Syntax.glsl"
 
 out vec2 texcoord;
