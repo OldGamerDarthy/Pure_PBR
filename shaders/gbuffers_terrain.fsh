@@ -7,14 +7,26 @@
 /* DRAWBUFFERS:0 */
 
 layout (location = 0) out vec4 albedo;
-layout (location = ur number fgt) out vec3 normal;
+layout (location = 2) out vec3 normalTangentSpace;
 
 uniform sampler2D texture;
+uniform sampler2D normals;
 
 in vec2 texcoord;
-in vec3 normals;
 in vec4 color;
+
+in mat3 tbnMatrix;
+
+vec3 getNormalMapping(vec2 coord)
+{
+    return texture2D3(normals, coord);
+}
 
 void main() {
     albedo = texture2D(texture, texcoord) * color;
+
+    vec3 bump = getNormalMapping(texcoord);
+
+    normalTangentSpace = normalize(tbnMatrix * bump);
+
 }
