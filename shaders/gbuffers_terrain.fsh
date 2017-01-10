@@ -14,5 +14,5 @@ in vec2 texcoord;
 in vec3 color;
 
 void main() {
-    albedo = texture2D3(texture, texcoord) * color.rgb;
+    albedo = texture2D3(texture, texcoord) * color;
 }
