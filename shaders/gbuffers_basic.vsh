@@ -1,13 +1,13 @@
 #version 450 compatibility
-#define gbuffers_basic
+#define gbuffers_textured
 #define vsh
 #define ShaderStage -1
 #include "/lib/Syntax.glsl"
 
-out vec3 color;
+out vec4 color;
 
 void main() {
-    color = gl_Color.rgb;
+    color = gl_Color;
 
 	gl_Position	= ftransform();
 }

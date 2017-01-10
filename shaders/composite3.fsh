@@ -13,8 +13,8 @@ uniform sampler2D colortex0;
 
 in vec2 texcoord;
 
-layout (location = 0) out vec3 albedo;
+layout (location = 0) out vec4 albedo;
 
 void main() {
-    albedo = texture(colortex0, texcoord).rgb;
+    albedo = texture(colortex0, texcoord);
 }

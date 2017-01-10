@@ -13,8 +13,8 @@ uniform sampler2D colortex0;
 
 in vec2 texcoord;
 
-out vec3 finalColor;
+out vec4 finalColor;
 
 void main() {
-    finalColor = texture(colortex0, texcoord).rgb;
+    finalColor = texture(colortex0, texcoord);
 }

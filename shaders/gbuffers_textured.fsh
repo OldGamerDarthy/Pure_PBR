@@ -6,13 +6,13 @@
 
 /* DRAWBUFFERS:0 */
 
-layout (location = 0) out vec3 albedo;
+layout (location = 0) out vec4 albedo;
 
 uniform sampler2D texture;
 
 in vec2 texcoord;
-in vec3 color;
+in vec4 color;
 
 void main() {
-    albedo = texture2D3(texture, texcoord) * color.rgb;
+    albedo = texture2D(texture, texcoord) * color;
 }

@@ -5,11 +5,11 @@
 #include "/lib/Syntax.glsl"
 
 out vec2 texcoord;
-out vec3 color;
+out vec4 color;
 
 void main() {
     texcoord = gl_MultiTexCoord0.st;
-    color = gl_Color.rgb;
+    color = gl_Color;
 
 	gl_Position	= ftransform();
 }
