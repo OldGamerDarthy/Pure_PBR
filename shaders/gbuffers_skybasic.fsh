@@ -14,5 +14,5 @@ in vec2 texcoord;
 in vec4 color;
 
 void main() {
-    albedo = texture2D(texture, texcoord) * color;
+    albedo = color;
 }
