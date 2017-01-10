@@ -1,7 +1,7 @@
 #version 450 compatibility
-#define final
+#define composite0
 #define fsh
-#define ShaderStage 7
+#define ShaderStage 0
 #include "/lib/Syntax.glsl"
 
 /*
@@ -12,6 +12,8 @@ const int colortex0Format = RGBA16F;
 // TODO: GI(RSM-flux) https://pdfs.semanticscholar.org/1b29/71e7024a3e1c4108718e59b5ba4327c44b93.pdf, 
          AO(GTAO) http://iryoku.com/downloads/Practical-Realtime-Strategies-for-Accurate-Indirect-Occlusion.pdf
 */
+
+/* DRAWBUFFERS:0 */
 
 uniform sampler2D colortex0;
 
