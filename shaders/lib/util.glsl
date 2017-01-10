@@ -24,6 +24,8 @@
 	#define cameraPosition() vec3(mod(cameraPosition.x + 12345.0, 987654.0), cameraPosition.y, mod(cameraPosition.z + 12345.0, 987654.0))
 #endif
 
+#include "/lib/Utility/Clamping.glsl"
+
 float pow2(float f) {
 	return dot(f, f);
 }
