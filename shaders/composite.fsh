@@ -5,7 +5,7 @@
 #include "/lib/Syntax.glsl"
 
 /*
-const int colortex0Format = RGBA16F;
+const int colortex0Format = RGBA32F;
 */
 
 /*
