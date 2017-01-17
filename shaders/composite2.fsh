@@ -12,11 +12,17 @@
 */
 
 uniform sampler2D colortex0;
+uniform sampler2D colortex2;
 
 in vec2 texcoord;
 
 layout (location = 0) out vec4 albedo;
+layout (location = 2) out vec4 previousAlbedo;
 
 void main() {
-    albedo = texture(colortex0, texcoord);
+    vec4 albedoCurrent = texture(colortex0, texcoord);
+    vec4 albedoPrev = texture(colortex2, texcoord);
+
+    albedo = (albedoCurrent + albedoPrev) * 0.5;
+    previousAlbedo = albedoCurrent;
 }

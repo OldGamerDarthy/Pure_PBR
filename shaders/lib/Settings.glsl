@@ -1,9 +1,9 @@
 /*
 const int colortex0Format = RGBA32F;
 const int colortex1Format = RGBA32F;
+const int colortex2Format = RGBA32F;
 
-
-
+const bool colortex2Clear = false;
 
 
 
