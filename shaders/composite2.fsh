@@ -171,7 +171,6 @@ vec3 doLightBounce(in Fragment pixel) {
     for(int i = 0; i < NUM_RAYS; i++) {
         vec3 ray_color = pixel.color;
         vec3 rayDir = normalize(pixel.position);
-        return rayDir;
         HitInfo hit_info;
         hit_info.position = pixel.position;
         hit_info.coord = texcoord;
