@@ -1,4 +1,4 @@
-#define DEBUG
+//#define DEBUG
 #define DEBUG_VIEW 1
 
 vec3 Debug;
