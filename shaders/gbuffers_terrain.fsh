@@ -3,6 +3,7 @@
 #define fsh
 #define ShaderStage -1
 #include "/lib/Syntax.glsl"
+#include "/lib/Utility.glsl"
 
 /* DRAWBUFFERS:01 */
 
@@ -29,6 +30,6 @@ void main() {
     vec3 normalSample = getNormalMapping(texcoord);
 
 
-    albedo = vec4(colorSample);
+    albedo = vec4(sRGB2L(colorSample.rgb), colorSample.a);
     normal = vec4(normalSample, 1.0);
 }

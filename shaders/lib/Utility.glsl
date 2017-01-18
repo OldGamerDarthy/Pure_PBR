@@ -39,3 +39,19 @@ vec2 rotate(in vec2 vector, float radians) {
 		cos(radians), -sin(radians),
 		sin(radians),  cos(radians));
 }
+
+vec3 L2sRGB(vec3 c) {
+	vec3 sRGBLo = c * 12.92;
+	vec3 sRGBHi = (pow(abs(c), vec3(1.0/2.4)) * 1.055) - 0.055;
+	vec3 sRGB = mix(sRGBHi, sRGBLo, lessThanEqual(c, vec3(0.0031308)));
+
+	return sRGB;
+}
+
+vec3 sRGB2L(vec3 sRGBCol) {
+	vec3 linearRGBLo  = sRGBCol / 12.92;
+	vec3 linearRGBHi  = pow((sRGBCol + 0.055) / 1.055, vec3(2.4));
+	vec3 linearRGB    = mix(linearRGBHi, linearRGBLo, lessThanEqual(sRGBCol, vec3(0.04045)));
+
+	return  linearRGB;
+}

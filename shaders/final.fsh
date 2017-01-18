@@ -8,6 +8,7 @@ https://github.com/iryoku/smaa
 #define fsh
 #define ShaderStage 7
 #include "/lib/Syntax.glsl"
+#include "/lib/Utility.glsl"
 
 uniform sampler2D colortex0;
 
@@ -19,6 +20,7 @@ out vec4 finalColor;
 
 void main() {
     finalColor = texture(colortex0, texcoord);
+    finalColor = vec4(L2sRGB(finalColor.rgb), finalColor.a);
 
     exit();
 }

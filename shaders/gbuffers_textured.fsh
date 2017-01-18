@@ -3,6 +3,7 @@
 #define fsh
 #define ShaderStage -1
 #include "/lib/Syntax.glsl"
+#include "/lib/Utility.glsl"
 
 /* DRAWBUFFERS:0 */
 
@@ -15,4 +16,5 @@ in vec4 color;
 
 void main() {
     albedo = texture2D(texture, texcoord) * color;
+    albedo = vec4(sRGB2L(albedo.rgb), albedo.a);
 }

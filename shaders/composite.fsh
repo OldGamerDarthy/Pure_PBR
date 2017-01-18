@@ -20,6 +20,20 @@ layout (location = 0) out vec4 albedo;
 
 #include "/lib/Debug.glsl"
 
+vec3 ProjectEquirectangularImage(vec2 coord) {
+	cvec2 coordToLongLat = vec2(2.0 * PI, PI);
+	      coord.y -= 0.5;
+	vec2 longLat = coord * coordToLongLat;
+	float longitude = longLat.x;
+	float latitude = longLat.y - (2.0 * PI);
+
+	float cos_lat = cos(latitude);
+	float cos_long = cos(longitude);
+	float sin_lat = sin(latitude);
+	float sin_long = sin(longitude);
+
+	return normalize(vec3(cos_lat * sin_long, sin_lat, cos_lat * cos_long));
+}
 
 void main() {
     albedo = texture(colortex0, texcoord);
