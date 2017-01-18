@@ -1,4 +1,4 @@
-#define DEBUG
+//#define DEBUG
 #define DEBUG_VIEW 1
 
 vec3 Debug;
@@ -32,7 +32,9 @@ void exit() {
 	
 	#ifdef DEBUG
 		#if ShaderStage == DEBUG_VIEW
-			if(isnan(length(Debug))) { Debug = vec3(0.0); }
+			if(isnan(length(Debug))) { 
+				Debug = vec3(1.0, 0.0, 1.0);
+			}
 
 			#if ShaderStage == -1
 				albedo = vec4(Debug, 1.0);
