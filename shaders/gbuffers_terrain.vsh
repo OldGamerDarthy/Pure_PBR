@@ -6,6 +6,7 @@
 #include "/lib/Utility.glsl"
 
 uniform mat4 gbufferModelViewInverse;
+uniform mat4 gbufferModelView;
 
 attribute vec4 at_tangent;
 
@@ -23,7 +24,7 @@ mat3 CalculateTBN(vec3 worldPosition) {
     
     vec3 normal = normalize(cross(-tangent, binormal));
     
-    return mat3(tangent, binormal, normal);
+    return mat3(gbufferModelView) * mat3(tangent, binormal, normal);
 }
 
 vec3 GetWorldSpacePosition() {

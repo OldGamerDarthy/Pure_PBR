@@ -18,16 +18,21 @@ in vec4 color;
 
 in mat3 tbnMatrix;
 
-vec3 getNormalMapping(vec2 coord) {
-    vec3 normal =  texture2D3(normals, coord);
-    normal.xyz = tbnMatrix * normalize(normal.xyz * 2.0 - 1.0);
-
-    return normal;
+vec3 GetNormal(vec2 coord) {
+#ifdef NORMAL_MAPS
+	vec3 normal = GetTexture(normals, coord).xyz;
+#else
+	vec3 normal = vec3(0.5, 0.5, 1.0);
+#endif
+	
+	normal.xyz = tbnMatrix * normalize(normal.xyz * 2.0 - 1.0);
+	
+	return normal;
 }
 
 void main() {
     vec4 colorSample = texture2D(texture, texcoord) * color;
-    vec3 normalSample = getNormalMapping(texcoord);
+    vec3 normalSample = GetNormal(texcoord);
 
 
     albedo = vec4(sRGB2L(colorSample.rgb), colorSample.a);

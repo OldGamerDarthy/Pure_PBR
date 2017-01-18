@@ -32,6 +32,7 @@ layout (location = 0) out vec4 albedo;
 
 void main() {
     albedo = texture(colortex0, texcoord);
+    show(texture(colortex1, texcoord));
 
     exit();
 }
