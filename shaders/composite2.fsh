@@ -22,6 +22,7 @@ layout (location = 0) out vec4 albedo;
 layout (location = 2) out vec4 previousAlbedo;
 
 #include "/lib/Debug.glsl"
+#include "/lib/Utility.glsl"
 
 void main() {
     vec4 albedoCurrent = texture(colortex0, texcoord);

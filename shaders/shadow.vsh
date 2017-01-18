@@ -21,7 +21,7 @@ uniform float frameTimeCounter;
 out vec3 vertNormal;
 
 
-#include "/lib/util.glsl"
+#include "/lib/Utility.glsl"
 #include "/lib/Shadows/ShadowBiasFunctions.glsl"
 
 vec3 GetWorldSpacePositionShadow() {

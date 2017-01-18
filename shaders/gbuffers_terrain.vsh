@@ -3,7 +3,7 @@
 #define vsh
 #define ShaderStage -1
 #include "/lib/Syntax.glsl"
-#include "/lib/util.glsl"
+#include "/lib/Utility.glsl"
 
 uniform mat4 gbufferModelViewInverse;
 
