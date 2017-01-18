@@ -15,6 +15,10 @@ in vec2 texcoord;
 
 out vec4 finalColor;
 
+#include "/lib/Debug.glsl"
+
 void main() {
     finalColor = texture(colortex0, texcoord);
+
+    exit();
 }

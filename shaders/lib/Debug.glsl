@@ -1,4 +1,5 @@
-//#define DEBUG
+#define DEBUG
+#define DEBUG_VIEW 1
 
 vec3 Debug;
 
@@ -24,16 +25,21 @@ void show(vec4 x) { Debug = x.rgb; }
 
 
 void exit() {
+
 #if ShaderStage < 0
 	Debug = max(Debug, vDebug); // This will malfunction if you have a show() in both the vertex and fragment
 #endif
 	
 	#ifdef DEBUG
 		#if ShaderStage == DEBUG_VIEW
+			if(isnan(length(Debug))) { Debug = vec3(0.0); }
+
 			#if ShaderStage == -1
-				gl_FragData[3] = vec4(Debug, 1.0);
+				albedo = vec4(Debug, 1.0);
+			#elif ShaderStage == 7
+				finalColor = vec4(Debug, 1.0);
 			#else
-				gl_FragData[0] = vec4(Debug, 1.0);
+				albedo = vec4(Debug, 1.0);
 			#endif
 			
 		#elif ShaderStage > DEBUG_VIEW
@@ -42,23 +48,22 @@ void exit() {
 				
 			#elif ShaderStage == 1
 				#if DEBUG_VIEW == 0
-					gl_FragData[0] = vec4(texture2D(colortex5, texcoord * COMPOSITE0_SCALE).rgb, 1.0);
+					albedo = vec4(texture2D(colortex0, texcoord).rgb, 1.0);
 				#else
-					gl_FragData[0] = vec4(texture2D(colortex3, texcoord).rgb, 1.0);
+					albedo = vec4(texture2D(colortex0, texcoord).rgb, 1.0);
 				#endif
 				
 			#elif ShaderStage == 2
-				gl_FragData[0] = vec4(texture2D(colortex1, texcoord).rgb, 1.0);
+				albedo = vec4(texture2D(colortex0, texcoord).rgb, 1.0);
 				
 			#elif ShaderStage == 3
-				discard;
+				albedo = vec4(texture2D(colortex0, texcoord).rgb, 1.0);
+
+			#elif ShaderStage == 4
+				albedo = vec4(texture2D(colortex0, texcoord).rgb, 1.0);
 				
 			#elif ShaderStage == 7
-				#if DEBUG_VIEW != 3
-					gl_FragData[0] = vec4(texture2D(colortex3, texcoord).rgb, 1.0);
-				#else
-					gl_FragData[0] = vec4(texture2D(colortex1, texcoord).rgb, 1.0);
-				#endif
+				finalColor = vec4(texture2D(colortex0, texcoord).rgb, 1.0);
 				
 			#endif
 		#endif

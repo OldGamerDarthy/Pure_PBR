@@ -22,11 +22,16 @@ https://github.com/wdas/brdf
 /* DRAWBUFFERS:0 */
 
 uniform sampler2D colortex0;
+uniform sampler2D colortex1;
 
 in vec2 texcoord;
 
 layout (location = 0) out vec4 albedo;
 
+#include "/lib/Debug.glsl"
+
 void main() {
     albedo = texture(colortex0, texcoord);
+
+    exit();
 }
