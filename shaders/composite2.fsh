@@ -80,7 +80,7 @@ Fragment fill_frag_struct(in vec2 coord) {
 
     Fragment pixel;
     pixel.position          = get_viewspace_position(coord);
-    pixel.normal            = normal_tex_sample.xyz * 2.0 - 1.0;
+    pixel.normal            = normal_tex_sample.xyz;
     pixel.color             = color_tex_sample.rgb;
     //pixel.metalness         = gaux2_sample.b;
     //pixel.smoothness        = pow(gaux2_sample.a, 2.2);
