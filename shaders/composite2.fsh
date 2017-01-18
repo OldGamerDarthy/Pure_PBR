@@ -35,6 +35,7 @@ uniform float frameTime;
 uniform float frameTimeCounter;
 
 in vec2 texcoord;
+in mat4 cur_pos_to_last_frame_pos;
 
 layout (location = 0) out vec4 albedo;
 layout (location = 2) out vec4 previousAlbedo;
@@ -42,7 +43,7 @@ layout (location = 2) out vec4 previousAlbedo;
 #include "/lib/Debug.glsl"
 #include "/lib/Utility.glsl"
 
-#line 36
+#line 47
 
 struct Fragment {
     vec3 position;
@@ -225,6 +226,21 @@ vec3 intersect_with_sphere(vec3 center, float radius, vec3 original_color) {
     return vec3(0);
 }
 
+vec3 get_previous_color(vec2 coord) {
+    float depth = texture2D(gdepthtex, coord).x;
+    vec2 ndc_pos = coord * 2.0 - 1.0;
+    vec4 frag_pos = gbufferProjectionInverse * vec4(ndc_pos, depth * 2.0 - 1.0, 1.0);
+    frag_pos /= frag_pos.w;
+
+    vec4 previous_frag_pos = cur_pos_to_last_frame_pos * frag_pos;
+    previous_frag_pos /= previous_frag_pos.w;
+    previous_frag_pos.st = previous_frag_pos.st * 0.5 + 0.5;
+
+    vec3 previous_color = texture2D(colortex2, previous_frag_pos.st).rgb;
+
+    return previous_color;
+}
+
 void main() {
     Fragment pixel = fill_frag_struct(texcoord);
     vec3 reflectedColor = pixel.color;
@@ -240,10 +256,12 @@ void main() {
         reflectedColor *= 850; // For emissive blocks
     }
 
-    vec4 albedoPrev = texture(colortex2, texcoord);
+    vec3 previous_color = get_previous_color(texcoord);
 
-    albedo = mix(vec4(reflectedColor, 1.0), albedoPrev, 0);
-    previousAlbedo = vec4(reflectedColor, 1);
+    vec3 color = mix(reflectedColor, previous_color, 0.8);
+
+    albedo = vec4(color, 1);
+    previousAlbedo = vec4(color, 1);
 
     exit();
 }
