@@ -27,6 +27,9 @@ uniform sampler2D gdepthtex;
 
 uniform mat4 gbufferProjection;
 uniform mat4 gbufferProjectionInverse;
+uniform mat4 gbufferModelViewInverse;
+uniform mat4 gbufferPreviousModelView;
+uniform mat4 gbufferPreviousProjection;
 
 uniform float viewWidth;
 uniform float viewHeight;
@@ -35,7 +38,6 @@ uniform float frameTime;
 uniform float frameTimeCounter;
 
 in vec2 texcoord;
-in mat4 cur_pos_to_last_frame_pos;
 
 layout (location = 0) out vec4 albedo;
 layout (location = 2) out vec4 previousAlbedo;
@@ -228,10 +230,10 @@ vec3 intersect_with_sphere(vec3 center, float radius, vec3 original_color) {
 
 vec3 get_previous_color(vec2 coord) {
     float depth = texture2D(gdepthtex, coord).x;
-    vec2 ndc_pos = coord * 2.0 - 1.0;
-    vec4 frag_pos = gbufferProjectionInverse * vec4(ndc_pos, depth * 2.0 - 1.0, 1.0);
+    vec4 frag_pos = gbufferProjectionInverse * vec4(coord * 2.0 - 1.0, depth * 2.0 - 1.0, 1.0);
     frag_pos /= frag_pos.w;
 
+    mat4 cur_pos_to_last_frame_pos = gbufferModelViewInverse * gbufferPreviousModelView * gbufferPreviousProjection;
     vec4 previous_frag_pos = cur_pos_to_last_frame_pos * frag_pos;
     previous_frag_pos /= previous_frag_pos.w;
     previous_frag_pos.st = previous_frag_pos.st * 0.5 + 0.5;
@@ -257,11 +259,12 @@ void main() {
     }
 
     vec3 previous_color = get_previous_color(texcoord);
+    //previous_color = texture2D(colortex2, texcoord).rgb;
 
-    vec3 color = mix(reflectedColor, previous_color, 0.8);
+    vec3 color = mix(reflectedColor, previous_color, 0.5);
 
     albedo = vec4(color, 1);
-    previousAlbedo = vec4(color, 1);
+    previousAlbedo = vec4(1);
 
     exit();
 }

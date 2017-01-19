@@ -29,10 +29,10 @@ void exit() {
 #if ShaderStage < 0
 	Debug = max(Debug, vDebug); // This will malfunction if you have a show() in both the vertex and fragment
 #endif
-	
+
 	#ifdef DEBUG
 		#if ShaderStage == DEBUG_VIEW
-			if(isnan(length(Debug))) { 
+			if(isnan(length(Debug))) {
 				Debug = vec3(1.0, 0.0, 1.0);
 			}
 
@@ -43,30 +43,30 @@ void exit() {
 			#else
 				albedo = vec4(Debug, 1.0);
 			#endif
-			
+
 		#elif ShaderStage > DEBUG_VIEW
 			#if   ShaderStage == 0
 				discard;
-				
+
 			#elif ShaderStage == 1
 				#if DEBUG_VIEW == 0
 					albedo = vec4(texture2D(colortex0, texcoord).rgb, 1.0);
 				#else
 					albedo = vec4(texture2D(colortex0, texcoord).rgb, 1.0);
 				#endif
-				
+
 			#elif ShaderStage == 2
 				albedo = vec4(texture2D(colortex0, texcoord).rgb, 1.0);
-				
+
 			#elif ShaderStage == 3
 				albedo = vec4(texture2D(colortex0, texcoord).rgb, 1.0);
 
 			#elif ShaderStage == 4
 				albedo = vec4(texture2D(colortex0, texcoord).rgb, 1.0);
-				
+
 			#elif ShaderStage == 7
 				finalColor = vec4(texture2D(colortex0, texcoord).rgb, 1.0);
-				
+
 			#endif
 		#endif
 	#endif
